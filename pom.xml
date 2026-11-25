@@ -6,12 +6,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>codecrafters</groupId>
-    <artifactId>CodeCrafters-Producto4</artifactId>
+    <artifactId>CodeCrafters-Producto5</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <javafx.version>21.0.2</javafx.version>
     </properties>
 
     <dependencies>
@@ -36,11 +37,30 @@
             <version>6.1.3</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- JavaFX: componentes de la interfaz gráfica -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
         <sourceDirectory>src</sourceDirectory>
         <testSourceDirectory>test</testSourceDirectory>
+
+        <plugins>
+            <!-- Ejecución de la aplicación JavaFX -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>codecrafters.vista.MainApp</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
 </project>
