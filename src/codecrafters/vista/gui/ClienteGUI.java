@@ -75,6 +75,29 @@ public class ClienteGUI extends VBox {
         configurarTabla();
         VBox.setVgrow(tabla, Priority.ALWAYS);
 
+        // Consulta de reservas del cliente seleccionado.
+        Button consultarReservas = new Button("Consultar reservas");
+        consultarReservas.getStyleClass().add("boton-secundario");
+
+        consultarReservas.disableProperty().bind(
+                tabla.getSelectionModel()
+                        .selectedItemProperty().isNull()
+        );
+
+        consultarReservas.setOnAction(evento -> {
+
+                Cliente seleccionado =
+                        tabla.getSelectionModel().getSelectedItem();
+
+                if (seleccionado != null) {
+
+                        ConsultaReservasGUI consulta =
+                                new ConsultaReservasGUI(controlador);
+
+                        consulta.mostrar(seleccionado);
+                }
+        });
+
         // Formulario de registro.
         Label tituloFormulario = new Label("Añadir nuevo cliente");
         tituloFormulario.getStyleClass().add("titulo-tarjeta");
@@ -125,6 +148,7 @@ public class ClienteGUI extends VBox {
                 descripcion,
                 barraBusqueda,
                 tabla,
+                consultarReservas,
                 panelFormulario
         );
 
